@@ -1,0 +1,38 @@
+# Refer to utils/config.py for definition and options.
+
+version = "CelebAHQ-WO-train"
+dist = true
+
+[model]
+batch_size = 20
+imagenet_pretrain = true
+imagenet_pretrain_path = "pretrain/model_best_resnet34_En_nomixup.pth"
+
+[train]
+total_epoch = 100
+val_epoch = 1
+G_lr = 1e-3
+beta1 = 0.5
+beta2 = 0.999
+rec_weight = 1.0
+lap_weight = 1.0
+com_weight = 1.0
+clip_grad = true
+# Uncomment to resume training
+# resume_checkpoint = "./pretrained/epoch_10_best_noOcc.ckpt" # None
+# reset_lr = false
+
+[data]
+train_root = "/home/jhb/dataset/FM_dataset/CelebA-HQ-WO-train"
+test_root = "/home/jhb/dataset/FM_dataset/CelebA-HQ-WO-test"
+fg_dir = "/home/jhb/dataset/source/occluders"
+bg_txt = "/home/jhb/dataset/source/face/CelebAMask-HQ-WO-train.txt"
+rand_dir = "/home/jhb/dataset/FM_dataset/CelebA-HQ-WO-"
+img_ext = ".jpg"
+mask_ext = ".png"
+folder_list = ["sim", "rand", "11k"] # celeba rand sim sim2 11k hiu
+occlusion = 0.25
+workers = 4
+crop_size = 512
+
+# [log]
