@@ -1,6 +1,7 @@
 # Face Matting 
 The goal is matting occlusions that is located in front of human face.
 To find out which occlusion generation technique is the best, I utilized serverl matting networks. 
+In this repository, you can use ResNet18, MGMatting, AEMatter, and MODNet. If you want RVM(Robust Video Matting), visit other repository &rarr; <a href="https://github.com/hyebiny/FaceExtraction_Video_Public" target="_blank">Video_Face_Matting_Public</a>
 
 * ResNet18
 * <a href="https://github.com/yucornetto/MGMatting" target="_blank">MGMattings</a> (mask-guided)
@@ -30,6 +31,8 @@ For train, valid, and test dataset, I utilized several public dataset.
 
 # Compare the results
 
+Evaluate each network with MSE(Mean square error), and SAD(Sum of Absolute difference) in the unknown region. The unknown region is computed by random erosion and dilation of the alpha matte. 
+
 |           | MSE   | SAD    |
 |-----------|-------|--------|
 | resnet18  | 0.068 | 27.161 |
@@ -38,6 +41,15 @@ For train, valid, and test dataset, I utilized several public dataset.
 | MODnet    | 0.035 | 14.600 |
 | RVM       | 0.015 | 2.312  |
 
-If you want to see the full image comparison, visit other repository &rarr; <a href="https://github.com/kennyvoo/face-occlusion-generation" target="_blank">Video_Face_Matting_Public</a>
+If you want to see the full image comparison, visit other repository &rarr; <a href="https://github.com/hyebiny/FaceExtraction_Video_Public" target="_blank">Video_Face_Matting_Public</a>
 
-# Train
+# How to execute the code
+
+### Train
+1. Choose the network and other settings by the config file. ```./config/train.toml```
+2. Run the train script. ```./scripts/train_matteh.sh```
+
+### Test and Evaluate
+1. Choose the ckpt and config file and change the test script. ```./scripts/test_matte.sh```
+2. Evaluate with the evaluation script. ```./scripts/eval_matte.sh```
+
